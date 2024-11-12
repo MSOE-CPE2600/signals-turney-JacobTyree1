@@ -4,9 +4,12 @@
  */
 
 /**
- * Modified by:
+ * Modified by: Jacob Tyree
  * 
  * Brief summary of modifications:
+ * Removed the exit command that would exit when it received a signal such as
+ * Ctrl + C or SIGINT. The way to exit the program is by entering the command
+ * "kill -SIGKILL <PID>". You can find the PID by entering ps aux. 
  */
 
 
@@ -20,7 +23,7 @@
  */
 void handle_signal() {
     printf("Received a signal\n");
-    exit(1);
+    
 }
 
 int main() {
