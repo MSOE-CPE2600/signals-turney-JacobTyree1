@@ -20,7 +20,7 @@
 #define MAX_EXCHANGES 10
 
 pid_t other_player_pid = 0;
-int exchange_count = 0;
+int exchange_count = 0; //Keeping track of exchanges
 
 void handle_ball(int signum, siginfo_t *info, void *context);
 
@@ -59,7 +59,7 @@ void handle_ball(int signum, siginfo_t *info, void *context) {
 
     exchange_count++;
     if(exchange_count > MAX_EXCHANGES) {
-        printf("Game Over. Exiting after %d exchanges.\n", MAX_EXCHANGES);
+        printf("Game Over. Exiting after %d exchanges.\n", MAX_EXCHANGES); //Exiting game when 10 exchanges are met
 
         if(kill(other_player_pid, SIGTERM) == -1) {
             perror("Faild to terminate the other player");

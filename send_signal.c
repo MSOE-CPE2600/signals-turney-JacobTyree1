@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     }
 
 
-    pid_t pid = atoi(argv[1]);
+    pid_t pid = atoi(argv[1]); //Converting pid
     srand(time(NULL));
     
     int random_value = rand() % 100;

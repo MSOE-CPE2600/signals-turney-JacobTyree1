@@ -16,7 +16,7 @@
  int main() {
     struct sigaction sa;
 
-    sa.sa_flags = SA_SIGINFO;
+    sa.sa_flags = SA_SIGINFO; //Assigning the signal handler
     sa.sa_sigaction = handle_sigusr1;
     sigemptyset(&sa.sa_mask);
 

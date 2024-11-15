@@ -52,7 +52,7 @@ int main() {
 }
 
 void handle_ball(int signum, siginfo_t *info, void *context) {
-    sender_pid = info->si_pid;
+    sender_pid = info->si_pid; //getting pid from other program
 
     printf("Received the ball from PID %d \a\n", sender_pid);
     fflush(stdout);
@@ -72,6 +72,6 @@ void handle_ball(int signum, siginfo_t *info, void *context) {
 }
 
 void handle_term(int signum) {
-    printf("Received SIGTERM. Exiting the game cleanly.\n");
+    printf("Received SIGTERM. Exiting the game cleanly.\n"); //Exiting the game when 10 exchanges are met
     exit(0);
 }
