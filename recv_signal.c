@@ -1,8 +1,9 @@
 /**
+ * Section: 121
  * File: recv_signal.c
  * Modified by: Jacob Tyree
  * 
- * Brief summary of program:
+ * Brief summary of program: Receives a signal from another program via the PID. 
  */
 
 #include <stdio.h>

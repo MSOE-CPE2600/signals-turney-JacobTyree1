@@ -1,3 +1,16 @@
+/**
+ * Section: 121
+ * File: sending.c
+ * Modified by: Jacob Tyree
+ * 
+ * Brief Summary of program: Sends a signal to another program via their PID.
+ * After a certain amount of time, it receives the signal back, which then the program sends 
+ * the signal back to the other program. It prints what action it is doing to the console, 
+ * and the game ends after 10 exchanges. 
+ * 
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -47,6 +60,11 @@ void handle_ball(int signum, siginfo_t *info, void *context) {
     exchange_count++;
     if(exchange_count > MAX_EXCHANGES) {
         printf("Game Over. Exiting after %d exchanges.\n", MAX_EXCHANGES);
+
+        if(kill(other_player_pid, SIGTERM) == -1) {
+            perror("Faild to terminate the other player");
+        }
+
         exit(0);
     }
 

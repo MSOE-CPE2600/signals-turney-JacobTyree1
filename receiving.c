@@ -1,8 +1,12 @@
 /**
- * File: 
- * Modified by: 
+ * Section: 121
+ * File: receiving.c
+ * Modified by: Jacob Tyree
  * 
- * Brief Summary of program: 
+ * Brief Summary of program: Waits to receive a signal from the sending program. 
+ * Once it receives the signal, it sends the signal back to the sender. 
+ * Each time it receives or sends, it prints that action to the console. The game 
+ * ends after 10 exchanges. 
  * 
  */
 
@@ -16,9 +20,19 @@
 pid_t sender_pid = 0;
 
 void handle_ball(int signum, siginfo_t *info, void *context);
+void handle_term(int signum);
 
 int main() {
     srand(time(NULL));
+    struct sigaction sa_term;
+    sa_term.sa_handler = handle_term;
+    sigemptyset(&sa_term.sa_mask);
+    if (sigaction(SIGTERM, &sa_term, NULL) == -1) {
+        perror("sigaction for SIGTERM");
+        exit(EXIT_FAILURE);
+    }
+
+
 
     struct sigaction sa;
     sa.sa_flags = SA_SIGINFO;
@@ -55,4 +69,9 @@ void handle_ball(int signum, siginfo_t *info, void *context) {
             exit(EXIT_FAILURE);
         }
     }
+}
+
+void handle_term(int signum) {
+    printf("Received SIGTERM. Exiting the game cleanly.\n");
+    exit(0);
 }

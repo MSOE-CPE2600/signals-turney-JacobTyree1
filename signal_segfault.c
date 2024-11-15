@@ -4,9 +4,11 @@
  */
 
 /**
- * Modified by:
+ * Section: 121
+ * Modified by: Jacob Tyree
  * 
- * Brief summary of modifications:
+ * Brief summary of modifications: Set up so that it prints to the console to receive
+ * the segmentation fault and not crash the program. 
  */
 
 
